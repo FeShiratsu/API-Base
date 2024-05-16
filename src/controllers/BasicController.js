@@ -26,10 +26,10 @@ module.exports = {
 
         let email = req.body.email
         let senha = req.body.senha
-        console.log(email,senha)
+
         if(email && senha){
             let response = await BasicService.getOne(email,senha);
-            if(response){json.result = response}
+            json.result = response
         }else{
             json.error = "campos nao enviados"
         }
@@ -47,9 +47,12 @@ module.exports = {
         }
 
         let email = req.body.email
-        let senha = req.body.senha
-        if(email && senha){
-            let response = await BasicService.insertOne(email,senha);
+        let senha = req.body.pass
+        let city = req.body.city
+        let address = req.body.add
+        let reference = req.body.ref
+        if(email && senha && city && address && reference){
+            let response = await BasicService.insertOne(email,senha,city,address,reference);
             if(response){json.result = response}
         }else{
             json.error = "campos nao enviados"
